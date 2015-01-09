@@ -10,4 +10,5 @@ CID=$(docker run -d $IMAGE /bin/sh)
 for file in $CONFIG_FILES; do
 	docker cp $CID:$file $APP_PATH || true
 done
+sleep 2 # give docker a moment to collect itself. possibly related to https://github.com/docker/docker/issues/5938
 docker rm -f $CID
