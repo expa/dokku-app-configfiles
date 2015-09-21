@@ -1,0 +1,6 @@
+[plugin]
+name = "dokku-app-configfiles"
+description = "A plugin that allows dokku app config files to be taken from the app's git repository"
+version = "0.1.0"
+website_url = "https://github.com/mikexstudios/dokku-app-configfiles"
+[plugin.config]
