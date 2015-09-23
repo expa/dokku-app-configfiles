@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+APP="$1"; IMAGE="dokku/$APP"; APP_PATH="$DOKKU_ROOT/$APP"
 
-APP="$1"; IMAGE="dokku/$APP"
-APP_PATH="$DOKKU_ROOT/$APP"
+if [[ -n $DOKKU_API_VERSION ]]; then
+  source "$PLUGIN_ENABLED_PATH/common/functions"
+  IMAGE=$(get_app_image_name $APP)
+fi
+
 echo "-----> Copying any files from app's .dokku/* to ${APP_PATH}..."
 
 CONFIG_FILES=$(docker run -i -a stdout $IMAGE /bin/bash -c "find /app/.dokku/ -type f" || true)

@@ -21,7 +21,7 @@ Why would I use this?
 
 Although it is prudent to always keep server configuration files separate from
 app files, many cloud hosts (such as dotcloud) offer the option to supply
-custom ngnix and other configuration files by checking them into your app's 
+custom nginx and other configuration files by checking them into your app's
 root directory. This approach is simple, and an advantage is that these
 configuration files are always backed up with the app. This plugin enables
 similar functionality for dokku.
@@ -32,7 +32,11 @@ Installation and Usage
 
 1. Install the plugin by cloning into the dokku plugins directory:
     ```sh
+    # dokku 0.3.x
     git clone https://github.com/mikexstudios/dokku-app-configfiles.git /var/lib/dokku/plugins/app-configfiles
+
+    # dokku 0.4+
+    dokku plugin:install https://github.com/mikexstudios/dokku-app-configfiles.git
     ```
 
 2. In your app's git repository (this is the app that you intend to push to
@@ -46,7 +50,7 @@ Installation and Usage
 3. Inside the `.dokku/` folder, place your dokku config files. For example, let's
    create some fixed environment variables:
     ```sh
-    cd my-webapp/.dokku/ 
+    cd my-webapp/.dokku/
     echo "export HELLO='world'" > ENV
     ```
     NOTE: In practice, you may not want to check sensitive environment variables
@@ -62,7 +66,7 @@ Installation and Usage
 5. Push your app to dokku and the config files in `.dokku/*` should be copied to
    your app's directory (e.g. `/home/dokku/my-webapp/`) on the dokku server.
 
-   
+
 License
 -------
 
